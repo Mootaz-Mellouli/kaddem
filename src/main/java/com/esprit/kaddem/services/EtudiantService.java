@@ -18,13 +18,20 @@ public class EtudiantService implements IEtudiantService {
     }
 
     @Override
-    public void ajouterEtduiant(Etudiant etudiant) {
-        etudiantRepository.save(etudiant);
+    public Etudiant ajouterEtduiant(Etudiant etudiant) {
+         return etudiantRepository.save(etudiant);
     }
 
     @Override
-    public void updateEtudiant(Etudiant etudiant) {
-
+    public Etudiant updateEtudiant(Etudiant etudiant, int id) {
+        Etudiant etudiant1 = etudiantRepository.getById(id);
+        etudiant1.setNomE(etudiant.getNomE());
+        etudiant1.setPrenomE(etudiant.getPrenomE());
+        etudiant1.setContrats(etudiant.getContrats());
+        etudiant1.setDepartement(etudiant.getDepartement());
+        etudiant1.setOption(etudiant.getOption());
+        etudiant1.setEquipes(etudiant.getEquipes());
+        return etudiantRepository.save(etudiant1);
     }
 
     @Override
@@ -39,6 +46,6 @@ public class EtudiantService implements IEtudiantService {
 
     @Override
     public Etudiant getByIDEtudiant(int id) {
-        return etudiantRepository.getById(id);
+        return etudiantRepository.findById(id).get();
     }
 }

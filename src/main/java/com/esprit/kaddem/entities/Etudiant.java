@@ -1,16 +1,18 @@
 package com.esprit.kaddem.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import lombok.Data;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.util.List;
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Etudiant {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEtudiant;
     private String prenomE;
     private String nomE;
@@ -19,4 +21,6 @@ public class Etudiant {
     private List<Contrat> contrats;
     @ManyToMany(mappedBy = "etudiantList")
     private List<Equipe> equipes;
+    @ManyToOne
+    private Departement departement;
 }
