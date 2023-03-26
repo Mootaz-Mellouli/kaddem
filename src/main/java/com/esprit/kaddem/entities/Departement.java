@@ -14,7 +14,7 @@ import java.util.List;
 public class Departement {
     @Id  @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int idApart;
-    private String nomDepart;
+        private String nomDepart;
     @OneToMany (mappedBy = "departement")
     private List<Etudiant> etudiantList;
 }

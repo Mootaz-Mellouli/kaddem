@@ -1,14 +1,14 @@
 package com.esprit.kaddem.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Etudiant {
@@ -18,9 +18,12 @@ public class Etudiant {
     private String nomE;
     private Option option;
     @OneToMany(mappedBy = "etudiant")
+    @JsonIgnore
     private List<Contrat> contrats;
     @ManyToMany(mappedBy = "etudiantList")
+    @JsonIgnore
     private List<Equipe> equipes;
     @ManyToOne
+    @JsonIgnore
     private Departement departement;
 }

@@ -1,6 +1,7 @@
 package com.esprit.kaddem.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Equipe {
     private String nomEquipe;
     private Niveau niveau;
     @ManyToMany
+    @JsonIgnore
     private List<Etudiant> etudiantList;
     @OneToOne(mappedBy = "equipe")
     private DetailEquipe detailEquipe;

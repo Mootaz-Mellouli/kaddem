@@ -1,34 +1,35 @@
 package com.esprit.kaddem.controllers;
 
 import com.esprit.kaddem.IServices.IEtudiantService;
+import com.esprit.kaddem.entities.Contrat;
 import com.esprit.kaddem.entities.Etudiant;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "TEST")
 @RestController
 @RequestMapping({"/etudiant"})
+@RequiredArgsConstructor
 public class EtudiantController {
 
 
     private final IEtudiantService etudiantService;
 
-    public EtudiantController(IEtudiantService etudiantService) {
-        this.etudiantService = etudiantService;
-    }
-
-    @RequestMapping("/")
+    @GetMapping("/")
     public List<Etudiant> getAllEtudiants()
     {
         return etudiantService.getAllEtudiants() ;
     }
 
     @PostMapping ("/add")
-    public Etudiant ajouterEtudiant(@RequestBody  Etudiant etudiant)
+    public Etudiant ajouterEtudiant(@RequestBody Etudiant etudiant)
     {
         return etudiantService.ajouterEtduiant(etudiant);
     }
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public Etudiant findEtudiantByID(@PathVariable ("id") int id)
     {
         return etudiantService.getByIDEtudiant(id);
@@ -43,6 +44,11 @@ public class EtudiantController {
     {
 
         return etudiantService.updateEtudiant(etudiant,id);
+    }
+    @RequestMapping("/addContrat/{nomEtu}/{prenomE}")
+    public Contrat affectContratToEtudiant(@RequestBody Contrat ce,@PathVariable String nomEtu,@PathVariable String prenomE) {
+        etudiantService.affectContratToEtudiant(ce,nomEtu,prenomE);
+        return ce;
     }
 
 }

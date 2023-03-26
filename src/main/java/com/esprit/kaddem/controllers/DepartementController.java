@@ -3,19 +3,17 @@ package com.esprit.kaddem.controllers;
 import com.esprit.kaddem.entities.Departement;
 import com.esprit.kaddem.entities.Etudiant;
 import com.esprit.kaddem.services.DepartementService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping({"/departement"})
+@RequiredArgsConstructor
 public class DepartementController {
 
     private final DepartementService departementService;
-
-    public DepartementController(DepartementService departementService) {
-        this.departementService = departementService;
-    }
 
     @RequestMapping("/")
     public List<Departement> getAllDepartement()
