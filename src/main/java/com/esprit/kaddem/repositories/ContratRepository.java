@@ -8,7 +8,5 @@ import java.util.List;
 
 public interface ContratRepository extends JpaRepository<Contrat,Integer> {
 
-    // date début greater than => startDate
-
     List<Contrat> findContratByDateDebutContratGreaterThanEqualAndDateFinContratLessThanEqualAndArchiveFalse(Date startDate, Date endDate);
 }

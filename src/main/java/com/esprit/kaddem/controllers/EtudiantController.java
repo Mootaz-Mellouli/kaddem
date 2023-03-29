@@ -50,5 +50,13 @@ public class EtudiantController {
         etudiantService.affectContratToEtudiant(ce,nomEtu,prenomE);
         return ce;
     }
+    @PostMapping("/equipeAndContrat/{idContrat}/{idEquipe}")
+    public Etudiant addAndAssignEtudiantToEquipeAndContract(@RequestBody Etudiant e,@PathVariable Integer idContrat,@PathVariable Integer idEquipe) {
+        return etudiantService.addAndAssignEtudiantToEquipeAndContract(e, idContrat, idEquipe);
+    }
+    @GetMapping("/byDepartment/{idDepartement}")
+    public List<Etudiant> getEtudiantsByDepartement(@PathVariable Integer idDepartement) {
+        return etudiantService.getEtudiantsByDepartement(idDepartement);
+    }
 
 }

@@ -1,8 +1,7 @@
 package com.esprit.kaddem.controllers;
 
+import com.esprit.kaddem.IServices.IDepartementService;
 import com.esprit.kaddem.entities.Departement;
-import com.esprit.kaddem.entities.Etudiant;
-import com.esprit.kaddem.services.DepartementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DepartementController {
 
-    private final DepartementService departementService;
+    private final IDepartementService departementService;
 
     @RequestMapping("/")
     public List<Departement> getAllDepartement()
@@ -41,5 +40,18 @@ public class DepartementController {
     {
 
         return departementService.updateDepartement(departement,id);
+    }
+
+    @PutMapping("/assignEtudiant/{etudiantId}/{departementId}")
+    public void assignEtudiantToDepartement(@PathVariable Integer etudiantId,@PathVariable Integer departementId) {
+        departementService.assignEtudiantToDepartement(etudiantId, departementId);
+    }
+    @PutMapping("/assignUniversite/{idUniversite}/{idDepartement}")
+    public void assignUniversiteToDepartement(@PathVariable Integer idUniversite,@PathVariable Integer idDepartement) {
+        departementService.assignUniversiteToDepartement(idUniversite, idDepartement);
+    }
+    @GetMapping("/byUniversite/{idUniversite}")
+    public List<Departement> retrieveDepartementsByUniversite(@PathVariable Integer idUniversite) {
+        return departementService.retrieveDepartementsByUniversite(idUniversite);
     }
 }
