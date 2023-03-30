@@ -17,4 +17,5 @@ public interface IContratService {
     Contrat getContratById(Integer contratID);
 
     Integer nbContratsValides(Date startDate, Date endDate);
+    void retrieveAndUpdateStatusContrat();
 }
